@@ -9,40 +9,6 @@ use Slim\Psr7\{
 
 final class Day2Controller extends ControllerBase
 {
-    const HIS_ROCK = 'A';
-    const HIS_PAPER = 'B';
-    const HIS_SCISSOR = 'C';
-    const MY_ROCK = 'X';
-    const MY_PAPER = 'Y';
-    const MY_SCISSOR = 'Z';
-
-    const points = [
-        'A' => 1, // Rock
-        'B' => 2, // Paper
-        'C' => 3, // Scissor
-        'X' => 1, // Rock
-        'Y' => 2, // Paper
-        'Z' => 3, // Scissor
-    ];
-/*
-    const wins = [
-        'A Y' => 2, // Rock Paper
-        'B Z' => 3, // Paper Scissor
-        'C X' => 1, // Scissor Rock
-    ];
-
-    const losses = [
-        'A Z' => 3, // Rock Scissor
-        'B X' => 1, // Paper Rock
-        'C Y' => 2, // Scissor Paper
-    ];
-
-    const draws = [
-        'A X' => 1,
-        'B Y' => 2,
-        'C Z' => 3,
-    ];
-*/
     const ALL = [
         // wins
         'A Y' => 6 + 2, // Rock Paper
@@ -58,6 +24,21 @@ final class Day2Controller extends ControllerBase
         'C Z' => 3 + 3,
     ];
 
+    const OUTCOME = [
+        'A' => ['win' => 'Y', 'loose' => 'Z', 'draw' => 'X'],
+        'B' => ['win' => 'Z', 'loose' => 'X', 'draw' => 'Y'],
+        'C' => ['win' => 'X', 'loose' => 'Y', 'draw' => 'Z'],
+    ];
+
+    /**
+     * 10816
+     * 11657
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param array $args
+     * @return void
+     */
     public function index(Request $request, Response $response, array $args)
     {
         $file = array_filter(explode(PHP_EOL, $this->getFile('2')));
@@ -69,15 +50,27 @@ final class Day2Controller extends ControllerBase
             $result[] = $v * self::ALL[$k];
         }
 
-        echo 'Round 1: ' . array_sum($result);
+        echo 'Round 1: ' . array_sum($result) . PHP_EOL;
 
 
-        /*while ($line = fgets($h)) {
+        $file = array_filter(explode(PHP_EOL, $this->getFile('2-2')));
+        // DRAW = Y
+        // LOOSE = X
+        // WIN = Z
 
-        }*/
+        $sum = 0;
+        foreach ($file as $line) {
+            $chars = explode(' ', $line);
 
+            switch ($chars[1]) {
+                case 'Y': $newchar = self::OUTCOME[$chars[0]]['draw']; break;
+                case 'X': $newchar = self::OUTCOME[$chars[0]]['loose']; break;
+                case 'Z': $newchar = self::OUTCOME[$chars[0]]['win']; break;
+            }
+            $sum += self::ALL[sprintf('%s %s', $chars[0], $newchar)];
+        }
+        echo 'Round 2: ' . $sum . PHP_EOL;
 
-        //$response->getBody()->write('Hello2');
         return $response;
     }
 }
