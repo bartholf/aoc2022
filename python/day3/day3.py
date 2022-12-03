@@ -34,7 +34,6 @@ class Day3:
         for x in file:
             x = x.strip()
             lines.append(set(x))
-        #s = self.chunk(lines, 3)
 
         sum = 0
         for x in self.chunk(lines, 3):
