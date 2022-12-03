@@ -17,7 +17,7 @@ class Day3:
         return iter(lambda: tuple(islice(array_range, size)), ())
 
     def part1(self):
-        file = open('./data/3.txt', 'r')
+        file = open('../../data/3.txt', 'r')
         sum = 0
         for x in file:
             x = x.strip()
@@ -28,16 +28,16 @@ class Day3:
         print(f'Part 1: {sum}')
 
     def part2(self):
-        file = open('./data/3-2.txt', 'r')
+        file = open('../../data/3-2.txt', 'r')
 
         lines = []
         for x in file:
             x = x.strip()
             lines.append(set(x))
-        s = self.chunk(lines, 3)
+        #s = self.chunk(lines, 3)
 
         sum = 0
-        for x in s:
+        for x in self.chunk(lines, 3):
             item = set(x[0]).intersection(x[1], x[2]).pop()
             sum += self.priorities[item]
 
