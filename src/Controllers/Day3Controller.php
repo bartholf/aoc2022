@@ -27,7 +27,6 @@ final class Day3Controller extends ControllerBase
     {
         $rows = array_filter(explode(PHP_EOL, $this->getFile('3')));
 
-        $items = [];
         $sum = 0;
 
         foreach ($rows as $row) {
