@@ -53,12 +53,7 @@ final class Day3Controller extends ControllerBase
         $sum = 0;
 
         foreach ($chunks as $chunk) {
-            $item = current(array_intersect(
-                str_split($chunk[0]),
-                str_split($chunk[2]),
-                str_split($chunk[1]),
-            ));
-            $sum += $this->priorities[$item];
+            $sum += $this->priorities[current(array_intersect(...array_map('str_split', $chunk)))];
         }
 
         echo 'Part2: ' . $sum . PHP_EOL;
