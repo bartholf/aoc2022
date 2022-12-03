@@ -44,7 +44,7 @@ final class Day3Controller extends ControllerBase
             ];
         }
 
-        print_r($sum);
+        echo 'Part1: ' . $sum;
         return $response;
     }
 }
