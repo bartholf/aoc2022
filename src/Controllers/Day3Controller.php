@@ -23,13 +23,8 @@ final class Day3Controller extends ControllerBase
             + array_combine(range('A', 'Z'), range(27, 52));
     }
 
-    /**
-     * 7793
-     *
-     */
     public function index(Request $request, Response $response, array $args)
     {
-        $this->init();
         $rows = array_filter(explode(PHP_EOL, $this->getFile('3')));
 
         $items = [];
@@ -44,7 +39,29 @@ final class Day3Controller extends ControllerBase
             ];
         }
 
-        echo 'Part1: ' . $sum;
+        echo 'Part1: ' . $sum . PHP_EOL;
+        $this->part2();
         return $response;
+    }
+
+    public function part2()
+    {
+        $chunks = array_chunk(
+            array_filter(explode(PHP_EOL, $this->getFile('3-2'))),
+            3
+        );
+
+        $sum = 0;
+
+        foreach ($chunks as $chunk) {
+            $item = current(array_intersect(
+                str_split($chunk[0]),
+                str_split($chunk[2]),
+                str_split($chunk[1]),
+            ));
+            $sum += $this->priorities[$item];
+        }
+
+        echo 'Part2: ' . $sum . PHP_EOL;
     }
 }
