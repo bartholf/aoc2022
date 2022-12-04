@@ -26,10 +26,8 @@ final class Day4Controller extends ControllerBase
 
     public function index(Request $request, Response $response, array $args)
     {
-        $rows = array_filter(explode(PHP_EOL, $this->getFile('4')));
-
         $sum = 0;
-        foreach ($rows as $x) {
+        foreach ($this->getData('4') as $x) {
             $sum += self::isContained(...self::getRange($x)) ? 1 : 0;
         }
 
@@ -41,9 +39,8 @@ final class Day4Controller extends ControllerBase
 
     public function part2()
     {
-        $rows = array_filter(explode(PHP_EOL, $this->getFile('4-2')));
         $sum = 0;
-        foreach ($rows as $x) {
+        foreach ($this->getData('4-2') as $x) {
             $sum += array_intersect(...self::getRange($x)) ? 1 : 0;
         }
 

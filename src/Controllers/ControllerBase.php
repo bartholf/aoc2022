@@ -7,6 +7,10 @@ abstract class ControllerBase
     protected function getFile(string $ix)
     {
         return file_get_contents(__DIR__ . sprintf('/../../data/%d.txt', $ix));
-        //return fopen(__DIR__ . sprintf('/../../data/%d.txt', $ix), 'r');
+    }
+
+    protected function getData(string $ix): array
+    {
+        return array_filter(explode(PHP_EOL, $this->getFile($ix)));
     }
 }
