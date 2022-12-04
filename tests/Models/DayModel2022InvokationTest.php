@@ -7,7 +7,7 @@ use AdventOfCode\Models\y2022\{
 };
 use PHPUnit\Framework\TestCase;
 
-final class DayModelInvokationTest extends TestCase
+final class DayModel2022InvokationTest extends TestCase
 {
     public function testInvokeDay2(): void
     {
