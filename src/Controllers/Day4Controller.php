@@ -11,21 +11,8 @@ final class Day4Controller extends ControllerBase
 {
     private static function isContained(array $a1, array $a2): bool
     {
-        $s1 = current($a1);
-        $e1 = end($a1);
-
-        $s2 = current($a2);
-        $e2 = end($a2);
-
-        if ($s1 >= $s2 && $e1 <= $e2) {
-            return true;
-        }
-
-        if ($s2 >= $s1 && $e2 <= $e1) {
-            return true;
-        }
-
-        return false;
+        return array_intersect($a1, $a2) == $a1
+            || array_intersect($a2, $a1) == $a2;
     }
 
     public function index(Request $request, Response $response, array $args)
