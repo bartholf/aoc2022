@@ -18,7 +18,12 @@ final class Day4Controller extends ControllerBase
     public function index(Request $request, Response $response, array $args)
     {
         $response->getBody()->write(
-            sprintf('Part1: %d %sPart2: %d', $this->part1(), PHP_EOL, $this->part2())
+            sprintf(
+                'Part1: %d %sPart2: %d',
+                $this->part1(),
+                PHP_EOL,
+                $this->part2()
+            )
         );
         return $response;
     }
