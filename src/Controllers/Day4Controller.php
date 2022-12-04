@@ -32,16 +32,16 @@ final class Day4Controller extends ControllerBase
     {
         $rows = array_filter(explode(PHP_EOL, $this->getFile('4')));
 
-        $res = 0;
+        $sum = 0;
         foreach ($rows as $x) {
             preg_match('/^(\d+)-(\d+),(\d+)-(\d+)$/', $x, $match);
 
-            $res += self::isContained(range($match[1], $match[2]), range($match[3], $match[4]))
+            $sum += self::isContained(range($match[1], $match[2]), range($match[3], $match[4]))
                 ? 1
                 : 0;
         }
 
-        echo 'Part1: ' . $res . PHP_EOL;
+        echo 'Part1: ' . $sum . PHP_EOL;
 
         $this->part2();
         return $response;
