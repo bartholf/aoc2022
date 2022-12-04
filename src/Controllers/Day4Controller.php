@@ -28,21 +28,6 @@ final class Day4Controller extends ControllerBase
         return false;
     }
 
-    private static function isOverlap(array $a1, array $a2): bool
-    {
-        $o = array_intersect($a1, $a2);
-
-        $s1 = current($a1);
-        $e1 = end($a1);
-
-        $s2 = current($a2);
-        $e2 = end($a2);
-
-
-
-        return true;
-    }
-
     public function index(Request $request, Response $response, array $args)
     {
         $rows = array_filter(explode(PHP_EOL, $this->getFile('4')));
