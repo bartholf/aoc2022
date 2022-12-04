@@ -27,8 +27,7 @@ final class Day2Model extends ModelBase
 
     public function part1(): int
     {
-        $file = array_filter(explode(PHP_EOL, $this->getFile('2')));
-        $data = array_count_values($file);
+        $data = array_count_values($this->getData('2'));
 
         $result = [];
 
@@ -41,7 +40,7 @@ final class Day2Model extends ModelBase
 
     public function part2():int
     {
-        $file = array_filter(explode(PHP_EOL, $this->getFile('2-2')));
+        $file = $this->getData('2-2');
         // DRAW = Y
         // LOOSE = X
         // WIN = Z
