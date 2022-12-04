@@ -27,11 +27,9 @@ final class Day2Model extends ModelBase
 
     public function part1(): int
     {
-        $data = array_count_values($this->getData('2'));
-
         $result = [];
 
-        foreach ($data as $k => $v) {
+        foreach (array_count_values($this->getData('2')) as $k => $v) {
             $result[] = $v * self::ALL[$k];
         }
 
@@ -41,9 +39,6 @@ final class Day2Model extends ModelBase
     public function part2():int
     {
         $file = $this->getData('2-2');
-        // DRAW = Y
-        // LOOSE = X
-        // WIN = Z
 
         $sum = 0;
         foreach ($file as $line) {
