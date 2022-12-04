@@ -2,8 +2,6 @@
 
 namespace AdventOfCode\Models;
 
-use AdventOfCode\Util\Arr;
-
 final class Day3Model extends ModelBase
 {
     private array $priorities = [];
