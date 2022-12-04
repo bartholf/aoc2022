@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace AdventOfCode\Models;
+namespace AdventOfCode\Models\y2022;
 
 use AdventOfCode\Util\Arr;
 

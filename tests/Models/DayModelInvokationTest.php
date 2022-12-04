@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use AdventOfCode\Models\{
+use AdventOfCode\Models\y2022\{
     Day2Model,
     Day3Model,
     Day4Model

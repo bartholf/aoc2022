@@ -4,6 +4,7 @@ namespace AdventOfCode\Models;
 
 abstract class ModelBase
 {
+    abstract protected function getYear(): int;
     abstract public function part1(): int;
     abstract public function part2(): int;
 
@@ -15,7 +16,7 @@ abstract class ModelBase
 
     protected function getFile(string $ix)
     {
-        return file_get_contents(__DIR__ . sprintf('/../../data/%d.txt', $ix));
+        return file_get_contents(__DIR__ . sprintf('/../../data/%d/%d.txt', $this->getYear(), $ix));
     }
 
     protected function getData(string $ix): array

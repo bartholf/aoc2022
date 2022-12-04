@@ -34,7 +34,7 @@ abstract class ControllerBase
 
     public function index(Request $request, Response $response, array $args)
     {
-        $result = call_user_func(sprintf('\AdventOfCode\Models\Day%dModel::dispatch', $args['id']));
+        $result = call_user_func(sprintf('\AdventOfCode\Models\y%d\Day%dModel::dispatch', $args['year'], $args['id']));
 
         $response->getBody()->write(
             sprintf(
