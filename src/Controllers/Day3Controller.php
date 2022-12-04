@@ -2,6 +2,7 @@
 
 namespace AdventOfCode\Controllers;
 
+use AdventOfCode\Models\Day3Model;
 use Slim\Psr7\{
     Response,
     Request
@@ -25,37 +26,17 @@ final class Day3Controller extends ControllerBase
 
     public function index(Request $request, Response $response, array $args)
     {
-        $rows = array_filter(explode(PHP_EOL, $this->getFile('3')));
+        $result = Day3Model::dispatch();
 
-        $sum = 0;
-
-        foreach ($rows as $row) {
-            $cmp1 = substr($row, 0, strlen($row) / 2);
-            $cmp2 = substr($row, strlen($row) / 2, strlen($row));
-
-            $sum += $this->priorities[
-                current(array_intersect(str_split($cmp1), str_split($cmp2)))
-            ];
-        }
-
-        echo 'Part1: ' . $sum . PHP_EOL;
-        $this->part2();
-        return $response;
-    }
-
-    public function part2()
-    {
-        $chunks = array_chunk(
-            array_filter(explode(PHP_EOL, $this->getFile('3-2'))),
-            3
+        $response->getBody()->write(
+            sprintf(
+                'Part1: %d %sPart2: %d',
+                $result[0],
+                PHP_EOL,
+                $result[1]
+            )
         );
 
-        $sum = 0;
-
-        foreach ($chunks as $chunk) {
-            $sum += $this->priorities[current(array_intersect(...array_map('str_split', $chunk)))];
-        }
-
-        echo 'Part2: ' . $sum . PHP_EOL;
+        return $response;
     }
 }
