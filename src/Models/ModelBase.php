@@ -5,8 +5,8 @@ namespace AdventOfCode\Models;
 abstract class ModelBase
 {
     abstract protected function getYear(): int;
-    abstract public function part1(): int;
-    abstract public function part2(): int;
+    abstract public function part1();
+    abstract public function part2();
 
     public static function dispatch(): array
     {

@@ -38,7 +38,7 @@ abstract class ControllerBase
 
         $response->getBody()->write(
             sprintf(
-                'Part1: %d %sPart2: %d',
+                'Part1: %s %sPart2: %s',
                 $result[0],
                 PHP_EOL,
                 $result[1]
