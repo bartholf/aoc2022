@@ -55,11 +55,11 @@ final class Day5Model extends ModelBase
         return [(int) $matches[1], $matches[2] - 1, $matches[3] - 1];
     }
 
-    public function part1()
+    private function handleMoves(bool $reverse): string
     {
         $this->reset()->indata->goto(11);
         while ($x = $this->indata->read()) {
-            $this->move(...$this->getMoves($x));
+            $this->move(...$this->getMoves($x), reverse: $reverse);
         }
 
         $ret = [];
@@ -71,20 +71,13 @@ final class Day5Model extends ModelBase
         return implode('', $ret);
     }
 
+    public function part1()
+    {
+        return $this->handleMoves(true);
+    }
+
     public function part2(): string
     {
-        $this->reset()->indata->goto(11);
-        while ($x = $this->indata->read()) {
-            $this->move(...$this->getMoves($x), reverse: false);
-        }
-
-        $ret = [];
-
-        foreach ($this->stacks as $x) {
-            $ret[] = current($x);
-        }
-
-        return implode('', $ret);
-        //return 0;
+        return $this->handleMoves(false);
     }
 }
