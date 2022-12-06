@@ -46,8 +46,14 @@ final class Day5Model extends ModelBase
 
             $this->move((int) $matches[1], $matches[2] - 1, $matches[3] - 1);
         }
-        print_r($this->stacks);
-        return '';
+
+        $ret = [];
+
+        foreach ($this->stacks as $x) {
+            $ret[] = current($x);
+        }
+
+        return implode('', $ret);
     }
 
     public function part2(): int
@@ -56,6 +62,6 @@ final class Day5Model extends ModelBase
         foreach ($this->getRanges('4-2') as $x) {
             $sum += array_intersect(...$x) ? 1 : 0;
         }
-        return $sum;
+        return 0;
     }
 }
