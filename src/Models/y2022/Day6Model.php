@@ -21,11 +21,10 @@ final class Day6Model extends ModelBase
         $read = '';
 
         while ($i < strlen($line)) {
-            $read .= substr($line, $i, 1);
+            $read .= substr($line, $i++, 1);
             if (count(array_count_values(str_split(substr($read, -$keysize)))) === $keysize) {
-                return $i + 1;
+                return $i;
             };
-            $i++;
         }
     }
 
