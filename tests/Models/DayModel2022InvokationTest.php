@@ -27,6 +27,6 @@ final class DayModel2022InvokationTest extends TestCase
 
     public function testInvokeDay5(): void
     {
-        $this->assertEquals(['QPJPLMNNR', 0], Day5Model::dispatch());
+        $this->assertEquals(['QPJPLMNNR', 'BQDNWJPVJ'], Day5Model::dispatch());
     }
 }
