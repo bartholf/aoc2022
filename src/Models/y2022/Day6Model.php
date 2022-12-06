@@ -13,23 +13,7 @@ final class Day6Model extends ModelBase
         $this->indata = Indatafile::load(__DIR__ . "/../../../data/{$this->getYear()}/6.txt");
     }
 
-    public function part1()
-    {
-        $line = $this->indata->read();
-
-        $i = 0;
-        $read = '';
-
-        while ($i < strlen($line)) {
-            $read .= substr($line, $i, 1);
-            if (count(array_count_values(str_split(substr($read, -4)))) === 4) {
-                return $i + 1;
-            };
-            $i++;
-        }
-    }
-
-    public function part2()
+    private function evalStart(int $keysize): int
     {
         $line = $this->indata->reset()->read();
 
@@ -38,10 +22,20 @@ final class Day6Model extends ModelBase
 
         while ($i < strlen($line)) {
             $read .= substr($line, $i, 1);
-            if (count(array_count_values(str_split(substr($read, -14)))) === 14) {
+            if (count(array_count_values(str_split(substr($read, -$keysize)))) === $keysize) {
                 return $i + 1;
             };
             $i++;
         }
+    }
+
+    public function part1()
+    {
+        return $this->evalStart(4);
+    }
+
+    public function part2()
+    {
+        return $this->evalStart(14);
     }
 }
