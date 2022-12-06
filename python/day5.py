@@ -36,11 +36,8 @@ class Day5:
     def go(self, reverse):
         i = 10
         while i < len(self.data):
-            line = self.data[i]
-            m = re.search("^move (\d+) from (\d+) to (\d+)",
-                          line)
-            nums = [int(x) for x in m.groups()]
-            self.move(*nums, reverse)
+            m = re.search("^move (\d+) from (\d+) to (\d+)", self.data[i])
+            self.move(*[int(x) for x in m.groups()], reverse)
             i += 1
 
         a = ''
