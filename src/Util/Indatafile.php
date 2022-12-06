@@ -14,22 +14,28 @@ final class Indatafile
         $this->content = file_get_contents($filename);
     }
 
+    public function __destruct()
+    {
+        fclose($this->handle);
+    }
+
     public static function load(string $filename): self
     {
         return new self($filename);
     }
 
-    public function readLine(): ?string
+    private function getReader()
     {
-        if (!$this->handle) {
-            $this->handle = fopen($this->filename, 'r');
-        }
+        return $this->handle
+            ? $this->handle
+            : $this->handle = fopen($this->filename, 'r');
+    }
 
-        if (($line = fgets($this->handle)) !== false) {
+    public function read(): ?string
+    {
+        if (($line = fgets($this->getReader())) !== false) {
             return $line;
         }
-
-        fclose($this->handle);
         return null;
     }
 
@@ -42,5 +48,14 @@ final class Indatafile
             }
             $content[] = trim($line);
         }
+    }
+
+    public function goTo(int $rownumber): self
+    {
+        rewind($this->getReader());
+        for ($i = 1; $i < $rownumber; $i++) {
+            $this->read();
+        }
+        return $this;
     }
 }

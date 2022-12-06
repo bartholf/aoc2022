@@ -9,52 +9,44 @@ final class Day5Model extends ModelBase
 {
     private Indatafile $indata;
 
+    private $stacks = [
+        ['M', 'S', 'J', 'L', 'V', 'F', 'N', 'R'],
+        ['H', 'W', 'J', 'F', 'Z', 'D', 'N', 'P'],
+        ['G', 'D', 'C', 'R', 'W'],
+        ['S', 'B', 'N'],
+        ['N', 'F', 'B', 'C', 'P', 'W', 'Z', 'M'],
+        ['W', 'M', 'R', 'P'],
+        ['W', 'S', 'L', 'G', 'N', 'T', 'R'],
+        ['V', 'B', 'N', 'F', 'H', 'T', 'Q'],
+        ['F', 'N', 'Z', 'H', 'M', 'L'],
+    ];
+
     public function __construct()
     {
         $this->indata = Indatafile::load(__DIR__ . "/../../../data/{$this->getYear()}/5.txt");
     }
 
-    private function pickEach(int $start, int $inc, string $subject, $pad = 0): array
+    private function move(int $qty, int $from, int $to)
     {
-        $out = [];
-        while ($start < strlen($subject)) {
-            $out[] = substr($subject, $start, 1);
-            $start += ($inc + 1);
+        for ($i = 0; $i < $qty; $i++) {
+            $moved = array_shift($this->stacks[$from]);
+            array_unshift($this->stacks[$to], $moved);
         }
-
-        if ($pad) {
-            for ($i = count($out); $i < $pad; $i++) {
-                $out[] = '';
-            }
-        }
-
-        return $out;
     }
 
     public function part1()
     {
-        $lines = $this->indata->getUntil(PHP_EOL);
-        $m = preg_match('/(\d)$/', end($lines), $matches);
+        $this->indata->goto(11);
+        while ($x = $this->indata->read()) {
+            preg_match(
+                '/^move (\d+) from (\d+) to (\d+)$/',
+                $x,
+                $matches
+            );
 
-        unset($lines[count($lines) - 1]);
-        print_r(($lines));
-
-        $cols = [];
-        $start = 1;
-        $i = 0;
-        while ($start < $matches[1]) {
-            for ($row = count($lines) - 1; $row > -1; $row--) {
-                //substr($row, $start, 1);
-            }
+            $this->move((int) $matches[1], $matches[2] - 1, $matches[3] - 1);
         }
-
-
-/*
-        for ($i = 0; $i < count($lines) - 1; $i++) {
-            $cols[] = $this->pickEach(1, 3, $lines[$i], 9);
-        }
-*/
-        print_r($cols);
+        print_r($this->stacks);
         return '';
     }
 
