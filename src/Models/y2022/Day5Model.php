@@ -38,17 +38,22 @@ final class Day5Model extends ModelBase
         array_unshift($this->stacks[$to], ...$append);
     }
 
+    private function getMoves(string $line): array
+    {
+        preg_match(
+            '/^move (\d+) from (\d+) to (\d+)$/',
+            $line,
+            $matches
+        );
+
+        return [(int) $matches[1], $matches[2] - 1, $matches[3] - 1];
+    }
+
     public function part1()
     {
         $this->indata->goto(11);
         while ($x = $this->indata->read()) {
-            preg_match(
-                '/^move (\d+) from (\d+) to (\d+)$/',
-                $x,
-                $matches
-            );
-
-            $this->move((int) $matches[1], $matches[2] - 1, $matches[3] - 1);
+            $this->move(...$this->getMoves($x));
         }
 
         $ret = [];
