@@ -26,13 +26,16 @@ final class Day5Model extends ModelBase
         $this->indata = Indatafile::load(__DIR__ . "/../../../data/{$this->getYear()}/5.txt");
     }
 
-    private function move(int $qty, int $from, int $to)
+    private function move(int $qty, int $from, int $to, bool $reverse = true)
     {
         $moved = [];
         for ($i = 0; $i < $qty; $i++) {
             $moved[] = array_shift($this->stacks[$from]);
         }
-        array_unshift($this->stacks[$to], ...array_reverse($moved));
+
+        $append = $reverse ? array_reverse($moved) : $moved;
+
+        array_unshift($this->stacks[$to], ...$append);
     }
 
     public function part1()
