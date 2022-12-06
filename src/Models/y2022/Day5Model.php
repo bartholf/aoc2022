@@ -28,10 +28,11 @@ final class Day5Model extends ModelBase
 
     private function move(int $qty, int $from, int $to)
     {
+        $moved = [];
         for ($i = 0; $i < $qty; $i++) {
-            $moved = array_shift($this->stacks[$from]);
-            array_unshift($this->stacks[$to], $moved);
+            $moved[] = array_shift($this->stacks[$from]);
         }
+        array_unshift($this->stacks[$to], ...array_reverse($moved));
     }
 
     public function part1()
