@@ -22,10 +22,6 @@ final class Day6Model extends ModelBase
 
         while ($i < strlen($line)) {
             $read .= substr($line, $i, 1);
-            if ($i < 3) {
-                $i++;
-                continue;
-            }
             if (count(array_count_values(str_split(substr($read, -4)))) === 4) {
                 return $i + 1;
             };
@@ -42,10 +38,6 @@ final class Day6Model extends ModelBase
 
         while ($i < strlen($line)) {
             $read .= substr($line, $i, 1);
-            if ($i < 13) {
-                $i++;
-                continue;
-            }
             if (count(array_count_values(str_split(substr($read, -14)))) === 14) {
                 return $i + 1;
             };
