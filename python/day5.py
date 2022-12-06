@@ -17,7 +17,7 @@ class Day5:
             for col in range(9):
                 val = self.data[row][i:i+1]
                 if val.strip() != '':
-                    self.stacks[col].append(self.data[row][i:i+1])
+                    self.stacks[col].append(val)
                 i += 4
 
     def move(self, take, ix, to, reverse):
@@ -25,10 +25,7 @@ class Day5:
         for i in range(take):
             popped.append(self.stacks[ix - 1].pop())
 
-        if reverse:
-            a = reversed(popped)
-        else:
-            a = popped
+        a = reversed(popped) if reverse else popped
 
         for i in a:
             self.stacks[to - 1].append(i)
