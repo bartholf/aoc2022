@@ -23,9 +23,7 @@ final class Day5Model extends ModelBase
             $moved[] = array_shift($this->stacks[$from]);
         }
 
-        $append = $reverse ? array_reverse($moved) : $moved;
-
-        array_unshift($this->stacks[$to], ...$append);
+        array_unshift($this->stacks[$to], ...($reverse ? array_reverse($moved) : $moved));
     }
 
     private function reset(): self
