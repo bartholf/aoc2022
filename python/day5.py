@@ -7,8 +7,8 @@ class Day5:
     def __init__(self):
         with open('../data/2022/5.txt', 'r') as x:
             self.data = x.read().splitlines()
-            self.part1()
-            self.part2()
+        self.part1()
+        self.part2()
 
     def init_stacks(self):
         self.stacks = [[], [], [], [], [], [], [], [], []]
