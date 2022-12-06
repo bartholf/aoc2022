@@ -2,6 +2,7 @@
 import string
 from itertools import islice
 
+
 class Day3:
     def __init__(self):
         self.priorities = dict(zip(
@@ -17,18 +18,19 @@ class Day3:
         return iter(lambda: tuple(islice(array_range, size)), ())
 
     def part1(self):
-        file = open('../../data/3.txt', 'r')
+        file = open('../data/2022/3.txt', 'r')
         sum = 0
         for x in file:
             x = x.strip()
             cmplen = int(len(x) / 2)
-            s1 = set(list(x[0:cmplen])).intersection(set(list(x[cmplen:]))).pop()
+            s1 = set(list(x[0:cmplen])).intersection(
+                set(list(x[cmplen:]))).pop()
             sum += self.priorities[s1]
 
         print(f'Part 1: {sum}')
 
     def part2(self):
-        file = open('../../data/3-2.txt', 'r')
+        file = open('../data/2022/3.txt', 'r')
 
         lines = []
         for x in file:
