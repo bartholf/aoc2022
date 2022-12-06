@@ -16,7 +16,7 @@ final class Indatafile
 
     public function __destruct()
     {
-        fclose($this->handle);
+        $this->reset();
     }
 
     public static function load(string $filename): self
@@ -39,15 +39,13 @@ final class Indatafile
         return null;
     }
 
-    public function getUntil(string $stop): array
+    public function reset(): self
     {
-        $content = [];
-        while ($line = $this->readLine()) {
-            if ($line === $stop) {
-                return $content;
-            }
-            $content[] = trim($line);
+        if ($this->handle) {
+            fclose($this->handle);
         }
+        $this->handle = null;
+        return $this;
     }
 
     public function goTo(int $rownumber): self
