@@ -39,9 +39,6 @@ final class Day8Model extends ModelBase
             $out['w'][] = $this->stack[$row][$i];
         }
         return $out;
-        return [
-            max($out['n']), max($out['e']), max($out['s']), max($out['w']),
-        ];
     }
 
     public function part1()
