@@ -41,4 +41,9 @@ final class DayModel2022InvokationTest extends TestCase
     {
         $this->assertEquals([1232307, 7268994], Day7Model::dispatch());
     }
+
+    public function testInvokeDay8(): void
+    {
+        $this->assertEquals([1736, 0], Day7Model::dispatch());
+    }
 }
