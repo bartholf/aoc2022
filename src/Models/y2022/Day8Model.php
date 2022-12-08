@@ -44,7 +44,7 @@ final class Day8Model extends ModelBase
         ];
     }
 
-    public function part1() // 1740
+    public function part1()
     {
         $sum = (count($this->stack) + count(current($this->stack))) * 2 - 4;
 
