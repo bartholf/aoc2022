@@ -31,10 +31,10 @@ final class Indatafile
             : $this->handle = fopen($this->filename, 'r');
     }
 
-    public function read(): ?string
+    public function read(bool $trim = false): ?string
     {
         if (($line = fgets($this->getReader())) !== false) {
-            return $line;
+            return $trim ? trim($line) : $line;
         }
         return null;
     }
