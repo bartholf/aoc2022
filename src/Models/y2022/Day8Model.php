@@ -38,7 +38,7 @@ final class Day8Model extends ModelBase
         for ($i = $col - 1; $i > -1; $i--) {
             $out['w'][] = $this->stack[$row][$i];
         }
-
+        return $out;
         return [
             max($out['n']), max($out['e']), max($out['s']), max($out['w']),
         ];
@@ -53,7 +53,7 @@ final class Day8Model extends ModelBase
             for ($c = 1; $c < count($row) - 1; $c++) {
                 $found = false;
                 foreach ($a = $this->getNeighbours($i, $c) as $k => $v) {
-                    if (max(str_split($v)) < $row[$c]) {
+                    if (max($v) < $row[$c]) {
                         $found = true;
                     }
                 }
@@ -66,6 +66,6 @@ final class Day8Model extends ModelBase
 
     public function part2()
     {
-
+        return 0;
     }
 }

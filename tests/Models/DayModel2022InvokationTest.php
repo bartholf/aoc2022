@@ -6,7 +6,8 @@ use AdventOfCode\Models\y2022\{
     Day4Model,
     Day5Model,
     Day6Model,
-    Day7Model
+    Day7Model,
+    Day8Model
 };
 use PHPUnit\Framework\TestCase;
 
@@ -44,6 +45,6 @@ final class DayModel2022InvokationTest extends TestCase
 
     public function testInvokeDay8(): void
     {
-        $this->assertEquals([1736, 0], Day7Model::dispatch());
+        $this->assertEquals([1736, 0], Day8Model::dispatch());
     }
 }
