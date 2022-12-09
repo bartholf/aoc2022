@@ -23,7 +23,7 @@ final class Day8Model extends ModelBase
             's' => [],
             'w' => [],
         ];
-        for ($i = $row - 1; $i > -1; $i--) {
+        for ($i = $row - 1; $i > -1 && $row > 0; $i--) {
             $out['n'][] = $this->stack[$i][$col];
         }
 
@@ -63,6 +63,27 @@ final class Day8Model extends ModelBase
 
     public function part2()
     {
-        return 0;
+        $scores = [];
+        for ($i = 0; $i < count($this->stack); $i++) {
+            for ($c = 0; $c < count($this->stack[$i]); $c++) {
+                $curr = [];
+                foreach ($this->getNeighbours($i, $c) as $k => $v) {
+                    $x = 0;
+                    $stop = false;
+                    foreach ($v as $height) {
+                        if ($height >= $this->stack[$i][$c]) {
+                            if (!$stop) {
+                                $x += 1;
+                            }
+                            $stop = true;
+                        }
+                        $x += $stop ? 0 : 1;
+                    }
+                    $curr[] = $x;
+                }
+                $scores[] = array_product($curr);
+            }
+        }
+        return max($scores);
     }
 }
