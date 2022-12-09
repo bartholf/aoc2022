@@ -31,6 +31,17 @@ final class Indatafile
             : $this->handle = fopen($this->filename, 'r');
     }
 
+    public function getArray(bool $split = false): array
+    {
+        $out = [];
+        while ($x = $this->read(true)) {
+            $out[] = $split
+                ? str_split($x)
+                : $x;
+        }
+        return $out;
+    }
+
     public function read(bool $trim = false): ?string
     {
         if (($line = fgets($this->getReader())) !== false) {
