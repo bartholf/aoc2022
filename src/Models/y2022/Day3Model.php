@@ -38,7 +38,7 @@ final class Day3Model extends ModelBase
     {
         $sum = 0;
 
-        foreach (array_chunk($this->getData('3-2'), 3) as $chunk) {
+        foreach (array_chunk($this->getData('3'), 3) as $chunk) {
             $sum += $this->priorities[current(array_intersect(...array_map('str_split', $chunk)))];
         }
 

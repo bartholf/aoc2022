@@ -18,7 +18,7 @@ final class Day4Model extends ModelBase
     public function part2(): int
     {
         $sum = 0;
-        foreach ($this->getRanges('4-2') as $x) {
+        foreach ($this->getRanges('4') as $x) {
             $sum += array_intersect(...$x) ? 1 : 0;
         }
         return $sum;

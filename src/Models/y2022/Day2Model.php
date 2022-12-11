@@ -38,7 +38,7 @@ final class Day2Model extends ModelBase
 
     public function part2():int
     {
-        $file = $this->getData('2-2');
+        $file = $this->getData('2');
 
         $sum = 0;
         foreach ($file as $line) {
