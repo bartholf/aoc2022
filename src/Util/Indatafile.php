@@ -34,7 +34,7 @@ final class Indatafile
     public function getArray(bool $split = false): array
     {
         $out = [];
-        while ($x = $this->read(true)) {
+        while (($x = $this->read(true)) !== null) {
             $out[] = $split
                 ? str_split($x)
                 : $x;
