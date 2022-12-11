@@ -47,17 +47,11 @@ final class Day11Model extends ModelBase
             if (preg_match('/Starting items: (\d+(, \d+)*)$/', $v, $m)) {
                 $currMonkey['items']
                     = array_map(fn($x) => (int) $x, preg_split('/, /', $m[1]));
-            }
-
-            if (preg_match('/^Operation: new = (\w+) (.) (\w+)$/', $v, $m)) {
+            } else if (preg_match('/^Operation: new = (\w+) (.) (\w+)$/', $v, $m)) {
                 $currMonkey['op'] = array_slice($m, 1);
-            }
-
-            if (preg_match('/^Test: .+ (\d+)$/', $v, $m)) {
+            } else if (preg_match('/^Test: .+ (\d+)$/', $v, $m)) {
                 $currMonkey['test'] = $mods[] = (int) $m[1];
-            }
-
-            if (preg_match('/^If (true|false): .+ (\d+)$/', $v, $m)) {
+            } else if (preg_match('/^If (true|false): .+ (\d+)$/', $v, $m)) {
                 $currMonkey[$m[1]] = (int) $m[2];
             }
         }
