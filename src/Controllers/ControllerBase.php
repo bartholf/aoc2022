@@ -34,14 +34,18 @@ abstract class ControllerBase
 
     public function index(Request $request, Response $response, array $args)
     {
+        $start = microtime(true);
         $result = call_user_func(sprintf('\AdventOfCode\Models\y%d\Day%dModel::dispatch', $args['year'], $args['id']));
+        $elapsed = microtime(true) - $start;
 
         $response->getBody()->write(
             sprintf(
-                'Part1: %s %sPart2: %s',
+                'Part1: %s%sPart2: %s%sTime: %s ms',
                 $result[0],
                 PHP_EOL,
-                $result[1]
+                $result[1],
+                PHP_EOL,
+                $elapsed * 1000
             )
         );
 
