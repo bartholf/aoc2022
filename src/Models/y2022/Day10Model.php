@@ -25,13 +25,11 @@ final class Day10Model extends ModelBase
         );
     }
 
-    public function addTick(int $ticks = 1): self
+    public function addTick(): self
     {
-        for ($i = 0; $i < $ticks; $i++) {
-            $this->cycles += 1;
-            if (in_array($this->cycles, [20, 60, 100, 140, 180, 220])) {
-                $this->total += $this->cycles * $this->x;
-            }
+        $this->cycles += 1;
+        if (in_array($this->cycles, [20, 60, 100, 140, 180, 220])) {
+            $this->total += $this->cycles * $this->x;
         }
         return $this;
     }
@@ -43,7 +41,7 @@ final class Day10Model extends ModelBase
             if ($v[0] === 'noop') {
                 continue;
             }
-            $this->addTick(1)->x += $v[1];
+            $this->addTick()->x += $v[1];
         }
         return $this->total;
     }
