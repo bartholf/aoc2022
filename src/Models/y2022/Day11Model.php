@@ -19,6 +19,17 @@ final class Day11Model extends ModelBase
         ));
     }
 
+    private function getAnswer(): int
+    {
+        $count = [];
+        foreach ($this->monkeys as $v) {
+            $count[] = $v['count'];
+        }
+        sort($count);
+
+        return array_product(array_slice(array_reverse($count), 0, 2));
+    }
+
     private function init()
     {
         $this->monkeys = [];
@@ -87,15 +98,7 @@ final class Day11Model extends ModelBase
             $this->run();
         }
 
-        $count = [];
-        foreach ($this->monkeys as $v) {
-            $count[] = $v['count'];
-        }
-        sort($count); // 61503
-
-        return array_product(array_slice(array_reverse($count), 0, 2));
-
-        return 0;
+        return $this->getAnswer();
     }
 
     public function part2()
@@ -106,13 +109,6 @@ final class Day11Model extends ModelBase
             $this->run(true);
         }
 
-        $count = [];
-        foreach ($this->monkeys as $v) {
-            $count[] = $v['count'];
-        }
-        sort($count); // 61503
-
-        return array_product(array_slice(array_reverse($count), 0, 2));
-        return 0;
+        return $this->getAnswer();
     }
 }
