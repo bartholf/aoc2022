@@ -39,8 +39,7 @@ final class Day11Model extends ModelBase
 
         $monkeyIndex = -1;
         $mods = [];
-        for ($i = 0; $i < count($this->stack); $i++) {
-            $v = $this->stack[$i];
+        foreach ($this->stack as $v) {
             $monkeyIndex += str_starts_with($v, 'Monkey') ? 1 : 0;
             $currMonkey = &$this->monkeys[$monkeyIndex];
             $currMonkey['count'] = 0;
