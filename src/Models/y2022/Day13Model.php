@@ -30,7 +30,6 @@ final class Day13Model extends ModelBase
             $curr[$i % 3 === 2 ? 'l' : 'r'] = json_decode($x);
         }
         $this->stack[] = $curr;
-        print_r($this->stack);
     }
 
     public function part1()
