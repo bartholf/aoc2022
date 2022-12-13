@@ -12,6 +12,11 @@ final class Day13Model extends ModelBase
     public function __construct()
     {
         $this->indata = Indatafile::load(__DIR__ . "/../../../data/{$this->getYear()}/13.txt");
+        $this->initStack();
+    }
+
+    private function initStack()
+    {
         $a = $this->indata->getArray();
 
         $curr = [];
@@ -25,7 +30,6 @@ final class Day13Model extends ModelBase
             $curr[] = json_decode($x);
         }
         $this->stack[] = $curr;
-        print_r($this->stack);
     }
 
     public function part1()
